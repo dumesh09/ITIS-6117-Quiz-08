@@ -1,0 +1,28 @@
+{
+  "name": "itis-6117-quiz-08",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumesh09/ITIS-6117-Quiz-08.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dumesh09/ITIS-6117-Quiz-08/issues"
+  },
+  "homepage": "https://github.com/dumesh09/ITIS-6117-Quiz-08#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mariadb": "^2.5.6",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  }
+}
