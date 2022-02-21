@@ -24,8 +24,9 @@ const { addCompanyValidation } = require('../validation.js');
 
 router.get('/agents/:agent_code', async function(req,res){
     try {
+        const agentCode = req.params.agent_cod;
         const sqlQuery = 'SELECT agent_code,agent_name, working_area from sample.agents where agent_code=?';
-        const rows = await pool.query(sqlQuery, req.params.agent_code);
+        const rows = await pool.query(sqlQuery, agentCode.trim());
         //console.log("rows");
         //res.setHeader('Content-Type', 'application/json');
         res.status(200).json(rows);
@@ -85,8 +86,9 @@ router.get('/company',addCompanyValidation, async function(req,res){
  */
 router.get('/company/:company_id', async function(req,res){
     try {
+        const companyid = req.params.company_id;
         const sqlQuery = 'SELECT * from sample.company where company_id = ?';
-        const rows = await pool.query(sqlQuery, [req.params.company_id]);
+        const rows = await pool.query(sqlQuery, [companyid.trim()]);
        // res.setHeader('Content-Type', 'application/json');
         res.status(200).json(rows);
     } catch (error) {
@@ -119,8 +121,9 @@ router.get('/company/:company_id', async function(req,res){
  */
 router.get('/customers', async function(req,res){
     try {
+        const custCity = req.quer;y.cust_city;
         const sqlQuery = 'SELECT * from sample.customer where cust_city=?';
-        const rows = await pool.query(sqlQuery, [req.query.cust_city]);
+        const rows = await pool.query(sqlQuery, [custCity.trim()]);
        // res.setHeader('Content-Type', 'application/json');
         res.status(200).json(rows);
     } catch (error) {
@@ -181,7 +184,7 @@ router.get('/customers', async function(req,res){
                 }
 
             const sqlQuery = 'INSERT INTO company (company_id, company_name,company_city) VALUES (?,?,?)';
-            const result = await pool.query(sqlQuery, [company_id, company_name,company_city]);
+            const result = await pool.query(sqlQuery, [company_id.trim(), company_name.trim(),company_city.trim()]);
             console.log(result);
             res.status(200).json({company_id: result.company_id});
         } catch (error) {
@@ -234,7 +237,7 @@ router.put('/company/:company_id', async function(req,res) {
                 }
 
             const sqlQuery = 'UPDATE company set company_id =?, company_name =?, company_city = ? where company_id = ?';
-            const result = await pool.query(sqlQuery, [company_id, company_name,company_city,req.params.company_id]);
+            const result = await pool.query(sqlQuery, [company_id.trim(), company_name.trim(),company_city.trim(),req.params.company_id]);
           //  console.log(result);
               if(result.affectedRows == 0){
                    res.status(400).send('Company does not exist');
@@ -281,7 +284,7 @@ router.patch('/company/:company_id', async function(req,res) {
            // const encryptedPassword = await bcrypt.hash(password,10)
 
             const sqlQuery = 'UPDATE company set company_name =?  where company_id = ?';
-            const result = await pool.query(sqlQuery, [company_name,req.params.company_id]);
+            const result = await pool.query(sqlQuery, [company_name.trim(),req.params.company_id.trim()]);
           //  console.log(result);
                   if(result.affectedRows == 0){
                    res.status(400).send('Company does not exist');
