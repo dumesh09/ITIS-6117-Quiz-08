@@ -26,9 +26,8 @@ const specs = swaggerJsdoc(options);
 app.use('/docs',swaggerUI.serve,swaggerUI.setup(specs));
 app.use(cors());
 
-app.get('/', (request, response) => {
-    response.status(200).send("hello")
-})
+const functionRouter = require('./routes/functions');
+app.use('/',functionRouter);
 
 const userRouter = require('./routes/users');
 app.use('/api.v1.ITIS6177',userRouter);
